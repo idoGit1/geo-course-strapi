@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "units",
+  "info": {
+    "singularName": "unit",
+    "pluralName": "units",
+    "displayName": "Unit"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "string",
+      "unique": true
+    },
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "description": {
+      "type": "text"
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "color": {
+      "type": "string"
+    },
+    "readingParts": {
+      "type": "component",
+      "component": "content.reading-part",
+      "repeatable": true
+    },
+    "videos": {
+      "type": "component",
+      "component": "content.video",
+      "repeatable": true
+    },
+    "assignments": {
+      "type": "component",
+      "component": "content.assignment",
+      "repeatable": true
+    }
+  }
+}

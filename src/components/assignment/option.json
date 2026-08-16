@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_assignment_options",
+  "info": {
+    "displayName": "Option",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

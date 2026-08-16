@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_content_assignments",
+  "info": {
+    "displayName": "Assignment",
+    "icon": "check"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "questions": {
+      "type": "component",
+      "component": "assignment.question",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

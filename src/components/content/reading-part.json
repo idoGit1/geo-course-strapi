@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_content_reading_parts",
+  "info": {
+    "displayName": "ReadingPart",
+    "icon": "message"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "text"
+    },
+    "tags": {
+      "type": "component",
+      "component": "helpers.tag",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
