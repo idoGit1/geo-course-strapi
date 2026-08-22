@@ -12,10 +12,10 @@
     "description": {
       "type": "text"
     },
-    "url": {
+    "duration": {
       "type": "string"
     },
-    "duration": {
+    "youtubeId": {
       "type": "string"
     }
   },

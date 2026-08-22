@@ -32,6 +32,9 @@ export interface ContentAssignment extends Struct.ComponentSchema {
   };
   attributes: {
     description: Schema.Attribute.Text;
+    difficulty: Schema.Attribute.Enumeration<
+      ['easy', 'medium', 'hard', 'extreme']
+    >;
     questions: Schema.Attribute.Component<'assignment.question', true>;
     title: Schema.Attribute.String;
   };
@@ -60,7 +63,7 @@ export interface ContentVideo extends Struct.ComponentSchema {
     description: Schema.Attribute.Text;
     duration: Schema.Attribute.String;
     title: Schema.Attribute.String;
-    url: Schema.Attribute.String;
+    youtubeId: Schema.Attribute.String;
   };
 }
 

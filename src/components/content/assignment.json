@@ -16,6 +16,15 @@
       "type": "component",
       "component": "assignment.question",
       "repeatable": true
+    },
+    "difficulty": {
+      "type": "enumeration",
+      "enum": [
+        "easy",
+        "medium",
+        "hard",
+        "extreme"
+      ]
     }
   },
   "config": {}

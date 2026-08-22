@@ -24,19 +24,6 @@
     "description": {
       "type": "text"
     },
-    "icon": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "color": {
-      "type": "string"
-    },
     "readingParts": {
       "type": "component",
       "component": "content.reading-part",
@@ -51,6 +38,15 @@
       "type": "component",
       "component": "content.assignment",
       "repeatable": true
+    },
+    "iconName": {
+      "type": "string"
+    },
+    "number": {
+      "type": "integer"
+    },
+    "scale": {
+      "type": "string"
     }
   }
 }
