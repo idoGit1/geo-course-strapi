@@ -443,6 +443,40 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAssignmentAssignment extends Struct.CollectionTypeSchema {
+  collectionName: 'assignments';
+  info: {
+    displayName: 'Assignment';
+    pluralName: 'assignments';
+    singularName: 'assignment';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    difficulty: Schema.Attribute.Enumeration<
+      ['easy', 'medium', 'hard', 'extreme']
+    >;
+    isSubmitted: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::assignment.assignment'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    questions: Schema.Attribute.Relation<'oneToMany', 'api::question.question'>;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
   collectionName: 'home_pages';
   info: {
@@ -475,6 +509,74 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
+  collectionName: 'questions';
+  info: {
+    displayName: 'Question';
+    pluralName: 'questions';
+    singularName: 'question';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::question.question'
+    > &
+      Schema.Attribute.Private;
+    options: Schema.Attribute.Component<'assignment.option', true>;
+    possiblePoints: Schema.Attribute.Integer;
+    publishedAt: Schema.Attribute.DateTime;
+    score: Schema.Attribute.Integer;
+    text: Schema.Attribute.String;
+    type: Schema.Attribute.Enumeration<['open', 'closed']>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSubmissionSubmission extends Struct.CollectionTypeSchema {
+  collectionName: 'submissions';
+  info: {
+    displayName: 'submission';
+    pluralName: 'submissions';
+    singularName: 'submission';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    answers: Schema.Attribute.JSON;
+    assignment: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::assignment.assignment'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::submission.submission'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiUnitUnit extends Struct.CollectionTypeSchema {
   collectionName: 'units';
   info: {
@@ -486,7 +588,10 @@ export interface ApiUnitUnit extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    assignments: Schema.Attribute.Component<'content.assignment', true>;
+    assignments: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::assignment.assignment'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -965,7 +1070,6 @@ export interface PluginUsersPermissionsUser
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -997,6 +1101,10 @@ export interface PluginUsersPermissionsUser
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    submissions: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::submission.submission'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1020,7 +1128,10 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::assignment.assignment': ApiAssignmentAssignment;
       'api::home-page.home-page': ApiHomePageHomePage;
+      'api::question.question': ApiQuestionQuestion;
+      'api::submission.submission': ApiSubmissionSubmission;
       'api::unit.unit': ApiUnitUnit;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

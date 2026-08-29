@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "assignments",
+  "info": {
+    "singularName": "assignment",
+    "pluralName": "assignments",
+    "displayName": "Assignment"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "difficulty": {
+      "type": "enumeration",
+      "enum": [
+        "easy",
+        "medium",
+        "hard",
+        "extreme"
+      ]
+    },
+    "isSubmitted": {
+      "type": "boolean",
+      "default": false
+    },
+    "questions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::question.question"
+    }
+  }
+}

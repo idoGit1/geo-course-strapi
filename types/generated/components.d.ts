@@ -11,35 +11,6 @@ export interface AssignmentOption extends Struct.ComponentSchema {
   };
 }
 
-export interface AssignmentQuestion extends Struct.ComponentSchema {
-  collectionName: 'components_assignment_questions';
-  info: {
-    displayName: 'Question';
-    icon: 'question';
-  };
-  attributes: {
-    options: Schema.Attribute.Component<'assignment.option', true>;
-    text: Schema.Attribute.String;
-    type: Schema.Attribute.Enumeration<['open', 'closed']>;
-  };
-}
-
-export interface ContentAssignment extends Struct.ComponentSchema {
-  collectionName: 'components_content_assignments';
-  info: {
-    displayName: 'Assignment';
-    icon: 'check';
-  };
-  attributes: {
-    description: Schema.Attribute.Text;
-    difficulty: Schema.Attribute.Enumeration<
-      ['easy', 'medium', 'hard', 'extreme']
-    >;
-    questions: Schema.Attribute.Component<'assignment.question', true>;
-    title: Schema.Attribute.String;
-  };
-}
-
 export interface ContentReadingPart extends Struct.ComponentSchema {
   collectionName: 'components_content_reading_parts';
   info: {
@@ -82,8 +53,6 @@ declare module '@strapi/strapi' {
   export namespace Public {
     export interface ComponentSchemas {
       'assignment.option': AssignmentOption;
-      'assignment.question': AssignmentQuestion;
-      'content.assignment': ContentAssignment;
       'content.reading-part': ContentReadingPart;
       'content.video': ContentVideo;
       'helpers.tag': HelpersTag;

@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "submissions",
+  "info": {
+    "singularName": "submission",
+    "pluralName": "submissions",
+    "displayName": "submission"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "submissions"
+    },
+    "answers": {
+      "type": "json"
+    },
+    "assignment": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::assignment.assignment"
+    }
+  }
+}

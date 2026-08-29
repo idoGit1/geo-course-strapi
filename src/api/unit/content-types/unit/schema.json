@@ -34,11 +34,6 @@
       "component": "content.video",
       "repeatable": true
     },
-    "assignments": {
-      "type": "component",
-      "component": "content.assignment",
-      "repeatable": true
-    },
     "iconName": {
       "type": "string"
     },
@@ -47,6 +42,11 @@
     },
     "scale": {
       "type": "string"
+    },
+    "assignments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::assignment.assignment"
     }
   }
 }
