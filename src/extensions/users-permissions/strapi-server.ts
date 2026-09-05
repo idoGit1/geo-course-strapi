@@ -14,7 +14,7 @@ export default (plugin: any) => {
     if (body && body.jwt) {
       ctx.cookies.set("jwt", body.jwt, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
+        secure: false, //process.env.NODE_ENV === "production",
         maxAge: 1000 * 60 * 60 * 24 * 1, // 1 days
         path: "/",
         sameSite: "lax",
