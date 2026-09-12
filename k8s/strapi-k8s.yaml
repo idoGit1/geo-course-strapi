@@ -15,9 +15,11 @@ spec:
       labels:
         app: strapi
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret
       containers:
         - name: strapi
-          image: ghcr.io/idoGit1/geo-course-strapi:latest
+          image: ghcr.io/idogit1/geo-course-strapi:latest
           ports:
             - containerPort: 1337
           envFrom:
