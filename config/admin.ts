@@ -6,7 +6,6 @@ const config = ({
   auth: {
     secret: env("ADMIN_JWT_SECRET")!,
   },
-  url: "/control-panel",
   apiToken: {
     salt: env("API_TOKEN_SALT")!,
   },
